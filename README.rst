@@ -20,7 +20,8 @@ jspp_imageutils
 
 
 
-A small python package that bundles several utilities to handle images, specially for the purpose of preparing microscopy data for deep learning
+A small python package that bundles several utilities to handle images, specially for
+the purpose of preparing microscopy data for deep learning
 
 
 * Free software: Apache Software License 2.0
@@ -34,6 +35,17 @@ Features
 
 Credits
 -------
+
+
+Useful Links
+------------
+
+- Labelimg for annotating images.
+- Keras-retinanet for a reasonable way to implement models.
+- Detectron2, same as above, more models.
+- Google colab ... I dont own a gpu, nothing would be posible without them.
+- `Imaug <https://github.com/aleju/imgaug/>`, Python package for image augmentation.
+
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 

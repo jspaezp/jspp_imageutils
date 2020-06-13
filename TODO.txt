@@ -1,0 +1,13 @@
+
+# Milestone 1
+- Transform all cli to click from argparse
+- Change all image input to pillow from cv.
+- Update requirements.txt
+- Increase testing on backend functions
+- Testing for cli on click
+- add --verbose option to the cli commands
+- make electron2 pip installable via requirements.txt
+
+# Milestone 2
+- Add travis for automated testing
+

@@ -1,0 +1,21 @@
+
+imgaug
+pandas
+numpy
+nptyping
+pillow # imported as PIL
+opencv-python # imported as cv2
+torch==1.5
+torchvision==0.6
+
+# This installs the cpu version of detectron2
+-f https://dl.fbaipublicfiles.com/detectron2/wheels/cpu/torch1.5/index.html
+# -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu102/torch1.5/index.html
+# -e git://github.com/facebookresearch/detectron2.git#egg=detectron2
+
+# cython==0.29.20 # Commented out because it is also in the devel dependencies
+# -e git://github.com/cocodataset/cocoapi.git#subdirectory=PythonAPI&egg=pycocotools
+pycocotools
+
+-e git://github.com/fizyr/keras-retinanet#egg=keras-retinanet
+tensorflow
