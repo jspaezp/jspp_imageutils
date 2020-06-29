@@ -25,9 +25,9 @@ import matplotlib.pyplot as pyplot
 LABELS_TO_NAMES = {0: "cell"}
 
 
-def predict_images(model_path: str, image_dir: str):
+def predict_images(model_path: str, image_dir: str, backbone_name: str = 'resnet50'):
     # load retinanet model
-    model = models.load_model(model_path, backbone_name='resnet50')
+    model = models.load_model(model_path, backbone_name=backbone_name)
     imagnames = os.listdir(image_dir)
 
     for i in imagnames:
@@ -61,8 +61,7 @@ def predict_chunked_image(img_path: str, model: keras.models.Model,
             'scale'  :  scale,
             'boxes'  :  boxes,
             'scores' :  scores,
-            'labels' :  labels
-            }
+            'labels' :  labels }
         
         i += 1
 
