@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# modified from https://gist.github.com/rotemtam/88d9a4efae243fc77ed4a0f9917c8f6c
+# modified from:
+# https://gist.github.com/rotemtam/88d9a4efae243fc77ed4a0f9917c8f6c
 
 import os
 import glob
@@ -11,7 +12,7 @@ import pandas as pd
 import xml.etree.ElementTree as ET
 
 
-def xml_to_csv(path):
+def xml_to_csv(path: str) -> pd.DataFrame:
     xml_list = []
     for xml_file in glob.glob(path):
         tree = ET.parse(xml_file)
@@ -47,7 +48,7 @@ def xml_to_csv(path):
     return xml_df
 
 
-def xml_to_csv_file(infile, outfile):
+def xml_to_csv_file(infile: str, outfile: str):
     xml_df = xml_to_csv(infile)
     print(xml_df)
     xml_df.to_csv(outfile, index=None)
@@ -60,7 +61,8 @@ def cli():
 
 @cli.command()
 @click.option('--dir', type=str,
-              help='Name of source directory, will convert all xml files in it')
+              help='Name of source directory,' +
+              ' will convert all xml files in it')
 @click.option('--out_dir', type=str,  help='Name of the destination directory')
 def directory(dir, out_dir):
     files_convert = [x for x in os.listdir(dir) if x.endswith("xml")]

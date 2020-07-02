@@ -30,7 +30,6 @@ import os
 import argparse
 
 import pandas as pd
-import numpy as np
 
 import imgaug as ia
 import imgaug.augmenters as iaa
@@ -73,7 +72,8 @@ def draw_bbs(img, bbs: BoundingBox):
     return(image_border)
 
 
-def generate_sequential_augmenter(width: int = 512, height: int = 512) -> iaa.Sequential:
+def generate_sequential_augmenter(width: int = 512,
+                                  height: int = 512) -> iaa.Sequential:
     seq = iaa.Sequential([
         # Small gaussian blur with random sigma between 0 and 0.5.
         # But we only blur about 50% of all images.

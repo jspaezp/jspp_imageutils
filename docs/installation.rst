@@ -8,11 +8,13 @@ Installation
 Stable release
 --------------
 
+Currently, the package is not available via pip and therefore this section should be ignored
 To install jspp_imageutils, run this command in your terminal:
 
 .. code-block:: console
 
-    $ pip install jspp_imageutils
+    $ # Package not available via pip right now, sorry for the inconveniences
+    $ # pip install jspp_imageutils
 
 This is the preferred method to install jspp_imageutils, as it will always install the most recent stable release.
 

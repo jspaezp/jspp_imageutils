@@ -1,7 +1,6 @@
 
 import os
 import cv2
-from tensorflow.keras.preprocessing.image import save_img
 
 
 def save_generator_images(chunk_gen, output_dir: str,

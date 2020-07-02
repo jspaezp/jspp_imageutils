@@ -8,7 +8,7 @@ def stitch_images(chunk_gen: Iterable[np.array],
                   displacement: Tuple[int, int] = (250, 250),
                   operation="replace") -> np.array:
     """
-    Given an iterator or arrays, should return a larger array/image that 
+    Given an iterator or arrays, should return a larger array/image that
     combines all the other ones.
 
     Should in theory be the opposite function to "chunk_image_generator"

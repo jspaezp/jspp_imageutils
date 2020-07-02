@@ -7,10 +7,10 @@ from nptyping import NDArray
 from jspp_imageutils.image.chunking import chunk_image_on_position
 
 
-NumArray2D = Union[NDArray[(Any, Any), float], NDArray[(Any, Any),int]]
+NumArray2D = Union[NDArray[(Any, Any), float], NDArray[(Any, Any), int]]
 
 
-def nn_distance(X: NumArray2D, Y: NumArray2D, sqrt: bool=False):
+def nn_distance(X: NumArray2D, Y: NumArray2D, sqrt: bool = False):
     """
     Stack overflow question number 52366421
     Calculates the nearest neighbor distances between all elements in
@@ -29,11 +29,11 @@ def nn_distance(X: NumArray2D, Y: NumArray2D, sqrt: bool=False):
         return(D_sq)
 
 
-def radius_search(X: NumArray2D, Y: NumArray2D, radius: float=1.):
+def radius_search(X: NumArray2D, Y: NumArray2D, radius: float = 1.):
     """
     Stack overflow question number 52366421
     For X and Y of shapes (i, n) and (j, n)
-    Returns the indices r_i, r_j and distance r_d of every point in X 
+    Returns the indices r_i, r_j and distance r_d of every point in X
     within distance r of every point j in Y
 
     Therefore, the indices in r_i are the points in X that do have a near

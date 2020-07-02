@@ -2,8 +2,6 @@
 
 import os
 import cv2 as cv2  # hack that helps the linter to recognize the submodules
-import numpy as np
-import json
 import random
 
 from detectron2.data import MetadataCatalog
@@ -14,20 +12,40 @@ from typing import TypedDict, List, Union, Literal
 
 from matplotlib import pyplot as plt
 
+# Data specifications are located here:
+# https://detectron2.readthedocs.io/tutorials/datasets.html
+
 
 class BoxList(TypedDict):
-    bbox: [float, float, float, float]
+    """
+    BoxList class definition
+
+    This class is used for type hinting and uses the spefification of
+    data input required for detection.
+
+    for details please refer to:
+    https://detectron2.readthedocs.io/tutorials/datasets.html
+    """
+
+    bbox: List[float]  # no way to specify the length but it has to be 4
     bbox_mode: Union[Literal[BoxMode.XYXY_ABS],  Literal[BoxMode.XYWH_ABS]]
-    segmentation: List[float, ...]
+    segmentation: List[float]
     category_id: int
 
 
 class Record(TypedDict):
+    """
+    Record class definition as required by detectron
+
+    Defines the type hint for the records required by detectron to work
+    for details please refer to:
+    https://detectron2.readthedocs.io/tutorials/datasets.html
+    """
     file_name: str
     file_id: Union[int, str]
     height: float
     width: float
-    annotations: Union[List[BoxList, ...], List[()]]
+    annotations: Union[List[BoxList], List[None]]
 
 
 DetectronDataset = List[Record]
@@ -55,11 +73,12 @@ def get_record(img_file: str, csv_file: str, file_id: str) -> Record:
     with open(csv_file, "r") as f:
         # Since a square has only 4 points, that can be
         # delimited as xmax, xmin, ymax, ymin
-        # The box can be defined as  [xmax, ymax, xmin, ymax, xmin, ymin, xmax, ymin, xmax, ymax]
+        # The box can be defined as
+        # [xmax, ymax, xmin, ymax, xmin, ymin, xmax, ymin, xmax, ymax]
         next(f)  # first line should be just names
         for i in f:
-            # TODO assert that the file name in the csv matches the file name in the
-            #      image
+            # TODO assert that the file name in the csv matches
+            #      the file name in the image
             line_data = i.strip().split(",")
 
             if all([x == "" for x in line_data[1:-1]]):
@@ -92,7 +111,7 @@ def get_dataset(dir: str) -> DetectronDataset:
 
     Args:
         dir (str): A string pointing to a drectory that contains
-                   an img and a csv subdirectory, where the 
+                   an img and a csv subdirectory, where the
                    corresponding annotations are located.
 
 
@@ -121,7 +140,7 @@ def get_dataset(dir: str) -> DetectronDataset:
 
 def visualize_detectron_dataset(data_dir, metadata_catalog_name: str):
     train_dicts = get_dataset(data_dir)
-    
+
     dataset_metadata = MetadataCatalog.get("cells_train")
     for d in random.sample(train_dicts, 3):
         print(d)

@@ -1,11 +1,9 @@
 import itertools
 import numpy as np
 
-from nptyping import NDArray, UInt
 from jspp_imageutils.image.types import GenImgArray, GenImgBatch
 
-from typing import Tuple, Iterable, Iterator, Any, Union
-from tensorflow.keras.preprocessing.image import load_img, img_to_array
+from typing import Tuple, Iterable, Iterator
 
 # TODO: fix everywhere the x and y axis nomenclature
 """
@@ -18,7 +16,8 @@ chunk_data_image_generator -> returns batches of data
 def chunk_image_on_position(arr_img: GenImgArray,
                             x_pos: Iterable[int], y_pos: Iterable[int],
                             dimensions: Tuple[int, int] = (50, 50),
-                            warn_leftovers=True) -> Iterator[Tuple[int, int, GenImgArray]]:
+                            warn_leftovers=True) -> \
+                            Iterator[Tuple[int, int, GenImgArray]]:
 
     # TODO decide if this should handle centering the points ...
     x_ends = [x + dimensions[0] for x in x_pos]
@@ -43,7 +42,8 @@ def chunk_image_on_position(arr_img: GenImgArray,
 def chunk_image_generator(img,
                           chunk_size: Tuple[int, int] = (500, 500),
                           displacement: Tuple[int, int] = (250, 250),
-                          warn_leftovers=True) -> Iterator[Tuple[int, int, GenImgArray]]:
+                          warn_leftovers=True) -> \
+                          Iterator[Tuple[int, int, GenImgArray]]:
     """
     Gets an image read with tensorflow.keras.preprocessing.image.load_img
     and returns a generator that iterates over rectangular areas of it.
@@ -81,12 +81,26 @@ def chunk_data_image_generator(img: GenImgArray,
                                displacement: Tuple[int, int] = (250, 250),
                                batch: int = 16) -> GenImgBatch:
     """
+    chunk_data_image_generator [summary]
+
     Gets an image read with tensorflow.keras.preprocessing.image.load_img
     and returns a generator that iterates over BATCHES of rectangular
     areas of it
 
     dimensions are (batch, chunk_size, colors)
+
+    :param img: [description]
+    :type img: GenImgArray
+    :param chunk_size: [description], defaults to (500, 500)
+    :type chunk_size: Tuple[int, int], optional
+    :param displacement: [description], defaults to (250, 250)
+    :type displacement: Tuple[int, int], optional
+    :param batch: [description], defaults to 16
+    :type batch: int, optional
+    :return: [description]
+    :rtype: GenImgBatch
     """
+
     # np.concatenate((a1, a2))
     img_generator = chunk_image_generator(
         img=img, chunk_size=chunk_size,
@@ -108,4 +122,3 @@ def chunk_data_image_generator(img: GenImgArray,
             img_buffer = []
 
     yield(np.concatenate(img_buffer))
-
