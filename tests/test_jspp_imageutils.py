@@ -6,7 +6,7 @@ import pytest
 
 from click.testing import CliRunner
 
-from jspp_imageutils import jspp_imageutils
+# from jspp_imageutils import jspp_imageutils
 from jspp_imageutils import cli
 
 

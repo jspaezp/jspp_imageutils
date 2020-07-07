@@ -1,12 +1,8 @@
 import numpy as np
-import cv2
 import PIL
 
-from nptyping import NDArray, Float, UInt
-
-from jspp_imageutils.image.chunking import chunk_image_generator, chunk_image_on_position
+from jspp_imageutils.image.chunking import chunk_image_generator
 from jspp_imageutils.image.stitching import stitch_images
-from jspp_imageutils.image.types import ImgArray
 
 
 def test_chunking_works_on_arrays():
@@ -18,7 +14,7 @@ def test_chunking_works_on_arrays():
 
     img_chunk = chunk[2]
     # assert isinstance(img_chunk, NDArray[(2, 2), Float[32]])
-    assert img_chunk.shape == (2,2)
+    assert img_chunk.shape == (2, 2)
     # assert isinstance(img_chunk, ImgArray)
 
 
@@ -34,10 +30,10 @@ def test_chunking_works_on_cv2_imported_images(shared_datadir):
     img_chunk_shape = img_chunk.shape
 
     # assert isinstance(img_chunk, NDArray[(10, 10, 3), UInt])
-    assert img_chunk_shape == (10,10, 3)
+    assert img_chunk_shape == (10, 10, 3)
     assert isinstance(img_chunk, np.ndarray)
 
-    
+
 def test_stitching_and_chunking_equality_on_arrays():
     fakeimg = np.array(range(100))
     fakeimg = fakeimg.reshape(10, 10)
